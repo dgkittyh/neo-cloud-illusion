@@ -28,22 +28,25 @@ jobs:
     - name: Run Python Script
       run: python update_table.py
 
-    # 🎯 순서를 완벽하게 정렬하여 128 에러를 원천 차단하는 최종 깃 루틴
+    # 🎯 [영구 해결] 장바구니 충돌을 원천 차단하는 무결점 깃 시퀀스
     - name: Commit and Push Changes
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "github-actions[bot]@users.noreply.github.com"
         
-        # 1. 파이썬이 새로 구워낸 history.json과 index.html을 장바구니에 먼저 담습니다.
+        # 1. 파이썬이 구워낸 최신 파일들을 장바구니에 담습니다.
         git add history.json index.html
         
-        # 2. 장바구니에 담은 상태에서 깃허브 원격 서버의 최신 상태와 순서를 맞춥니다.
-        git pull origin main --rebase
-        
-        # 3. 변경 사항이 확실히 있을 때만 안전하게 최종 커밋 및 푸시를 날립니다.
+        # 2. 장바구니에 담긴 내역이 있을 때만 '먼저 로컬 커밋(결제)'을 완료합니다.
+        # 이렇게 해야 pull --rebase를 할 때 장바구니가 비어있어서 튕기지 않습니다.
         if ! git diff --cached --quiet; then
-          git commit -m "📡 라이브 데이터 및 타임스탬프 자동 동기화 완결"
+          git commit -m "📡 라이브 데이터 및 타임스탬프 동기화 빌드"
+          
+          # 3. 내 커밋을 안전하게 확보한 상태에서 깃허브 서버의 최신 상태를 당겨와 줄을 세웁니다.
+          git pull origin main --rebase
+          
+          # 4. 정렬이 완료된 최종 결과물을 원격 저장소에 쏘아 올립니다.
           git push origin main
         else
-          echo "변동 사항이 없으므로 빌드를 스킵합니다."
+          echo "변동 사항이 없으므로 빌드를 종료합니다."
         fi
