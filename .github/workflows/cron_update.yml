@@ -13,15 +13,15 @@ jobs:
       contents: write
 
     steps:
+    # 💡 Node.js 24 규격에 맞춰 최신 버전 가방(v5, v6)으로 교체했습니다.
     - name: Checkout Repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v5
 
     - name: Set up Python
-      uses: actions/setup-python@v5
+      uses: actions/setup-python@v6
       with:
         python-version: '3.10'
 
-    # 💡 야후 파이낸스 라이브러리를 가상 컴퓨터에 설치하는 사전 설정을 추가했습니다.
     - name: Install Dependencies
       run: |
         pip install yfinance
