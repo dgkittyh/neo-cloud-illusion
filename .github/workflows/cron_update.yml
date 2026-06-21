@@ -14,8 +14,9 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v3
 
+    # 💡 [교정 완료] 정식 파이썬 셋업 액션 주소로 수정했습니다.
     - name: Set up Python
-      uses: actions/with-python@v4
+      uses: actions/setup-python@v4
       with:
         python-version: '3.10'
 
