@@ -33,5 +33,6 @@ jobs:
       run: |
         git config --global user.name "github-actions[bot]"
         git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+        git pull --rebase # 💡 이 한 줄을 추가해서 서버의 최신 수정본을 먼저 받아오도록 합니다.
         git add index.html
         git diff --quiet && git diff --staged --quiet || (git commit -m "📊 Auto-Update: Latest Market Close Data" && git push)
