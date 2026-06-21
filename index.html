@@ -4,14 +4,14 @@
     <meta charset="UTF-8">
     <title>Neo-Cloud: The Share Count Illusion</title>
     <style>
-        body { background-color: #15202b; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; justify-content: center; padding: 40px; }
-        .card { background-color: #1e2732; border-radius: 16px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid #38444d; width: 980px; }
+        body { background-color: #15202b; color: #ffffff; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; display: flex; flex-direction: column; align-items: center; padding: 40px; }
+        .card { background-color: #1e2732; border-radius: 16px; padding: 30px; box-shadow: 0 4px 15px rgba(0,0,0,0.5); border: 1px solid #38444d; width: 1040px; margin-bottom: 25px; }
         h2 { text-align: center; color: #ffffff; margin-top: 0; margin-bottom: 5px; font-size: 24px; letter-spacing: 0.5px; }
         p.subtitle { text-align: center; color: #8899a6; margin-bottom: 25px; font-size: 15px; line-height: 1.5; }
         .highlight-text { color: #1da1f2; font-weight: bold; }
         .date-badge { font-size: 13px; color: #8899a6; display: block; margin-top: 5px; }
         table { width: 100%; border-collapse: collapse; font-size: 15px; }
-        th, td { padding: 14px 12px; text-align: right; border-bottom: 1px solid #38444d; }
+        th, td { padding: 14px 12px; text-align: right; border-bottom: 1px solid #38444d; vertical-align: middle; }
         th { background-color: #253341; color: #8899a6; font-weight: 600; text-transform: uppercase; font-size: 12px; cursor: pointer; user-select: none; }
         th:hover { background-color: #2c3640; color: #ffffff; }
         th:first-child, td:first-child { text-align: left; font-weight: bold; font-size: 16px; }
@@ -24,6 +24,9 @@
         .base-row { background-color: rgba(29, 161, 242, 0.15) !important; border-left: 4px solid #1da1f2; }
         .base-row td { color: #1da1f2 !important; }
         .base-row .adjusted-price, .base-row .percent-diff, .base-row .actual-price { color: #1da1f2 !important; }
+        
+        .disclaimer-footer { width: 1040px; background-color: rgba(255, 255, 255, 0.02); border: 1px solid #38444d; border-radius: 12px; padding: 20px; font-size: 12px; color: #8899a6; line-height: 1.6; text-align: justify; box-sizing: border-box; }
+        .disclaimer-footer strong { color: #e1e8ed; }
     </style>
 </head>
 <body>
@@ -32,7 +35,7 @@
     <h2>Neo-Cloud & Infra: The Share Count Illusion</h2>
     <p class="subtitle">
         Isolating the impact of dilution. What if every company had exactly the same number of shares as <span id="baseTickerName" class="highlight-text">$WYFI (38.61M)</span>?<br>
-        <span class="date-badge">* Data as of market close on June 19 (Click Ticker to change Base / Click Header to sort)</span>
+        <span class="date-badge">* Data as of market close on June 19, 2026 (Click Ticker to change Base / Click Header to sort)</span>
     </p>
     
     <table id="stockTable">
@@ -40,170 +43,191 @@
             <tr>
                 <th onclick="sortTable(0, false)">Ticker ↕</th>
                 <th onclick="sortTable(1, true)">Current Shares ↕</th>
-                <th onclick="sortTable(2, true)">Actual Price ($) ↕</th>
-                <th id="marketCapHeader" onclick="sortTable(3, true)">Market Cap ($) ↕</th>
-                <th id="adjustedHeader" onclick="sortTable(4, true)">Adjusted Price ($) ↕</th>
-                <th id="ratioHeader" onclick="sortTable(5, true)">WYFI / Ticker (%) ↕</th>
+                <th onclick="sortTable(2, true)">Dilution ↕</th>
+                <th onclick="sortTable(3, true)">Actual Price ($) ↕</th>
+                <th onclick="sortTable(4, true)">Market Cap ($) ↕</th>
+                <th onclick="sortTable(5, true)">Adjusted Price ($) ↕</th>
+                <th id="ratioHeader" onclick="sortTable(6, true)">WYFI / Ticker (%) ↕</th>
             </tr>
         </thead>
         <tbody>
-            <tr data-ticker="NBIS" data-shares="220406311" data-price="286.69" data-marketcap="72790073344">
+            <tr data-ticker="NBIS" data-shares="251137524" data-price="286.69" data-marketcap="71998616755">
                 <td>$NBIS</td>
-                <td>220,406,311</td>
+                <td>251,137,524</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$286.69</td>
-                <td>$72,790,073,344</td>
+                <td>$71,998,616,755</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="CRWV" data-shares="447573939" data-price="117.95" data-marketcap="64350023680">
+            <tr data-ticker="CRWV" data-shares="447573939" data-price="117.95" data-marketcap="52791346105">
                 <td>$CRWV</td>
                 <td>447,573,939</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$117.95</td>
-                <td>$64,350,023,680</td>
+                <td>$52,791,346,105</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="IREN" data-shares="357378674" data-price="59.96" data-marketcap="21428426752">
+            <tr data-ticker="IREN" data-shares="357378674" data-price="59.96" data-marketcap="21428425293">
                 <td>$IREN</td>
                 <td>357,378,674</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$59.96</td>
-                <td>$21,428,426,752</td>
+                <td>$21,428,425,293</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="WULF" data-shares="495532645" data-price="28.98" data-marketcap="14360536064">
+            <tr data-ticker="WULF" data-shares="495532645" data-price="28.98" data-marketcap="14360536052">
                 <td>$WULF</td>
                 <td>495,532,645</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$28.98</td>
-                <td>$14,360,536,064</td>
+                <td>$14,360,536,052</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="HUT" data-shares="112594112" data-price="124.44" data-marketcap="14011211776">
+            <tr data-ticker="HUT" data-shares="112594112" data-price="124.44" data-marketcap="14011211297">
                 <td>$HUT</td>
                 <td>112,594,112</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$124.44</td>
-                <td>$14,011,211,776</td>
+                <td>$14,011,211,297</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="APLD" data-shares="285769539" data-price="46.59" data-marketcap="13314002944">
+            <tr data-ticker="APLD" data-shares="285769539" data-price="46.59" data-marketcap="13314002822">
                 <td>$APLD</td>
                 <td>285,769,539</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$46.59</td>
-                <td>$13,314,002,944</td>
+                <td>$13,314,002,822</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="CIFR" data-shares="409049197" data-price="29.18" data-marketcap="11936055296">
+            <tr data-ticker="CIFR" data-shares="409049197" data-price="29.18" data-marketcap="11936055568">
                 <td>$CIFR</td>
                 <td>409,049,197</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$29.18</td>
-                <td>$11,936,055,296</td>
+                <td>$11,936,055,568</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="CORZ" data-shares="317885292" data-price="29.16" data-marketcap="9269534720">
+            <tr data-ticker="CORZ" data-shares="317885292" data-price="29.16" data-marketcap="9269535114">
                 <td>$CORZ</td>
                 <td>317,885,292</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$29.16</td>
-                <td>$9,269,534,720</td>
+                <td>$9,269,535,114</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="FRMI" data-shares="638083359" data-price="9.5" data-marketcap="6061791744">
+            <tr data-ticker="FRMI" data-shares="638083359" data-price="9.5" data-marketcap="6061791910">
                 <td>$FRMI</td>
                 <td>638,083,359</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$9.50</td>
-                <td>$6,061,791,744</td>
+                <td>$6,061,791,910</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="MARA" data-shares="381270503" data-price="14.22" data-marketcap="5421666304">
+            <tr data-ticker="MARA" data-shares="381270503" data-price="14.22" data-marketcap="5421666552">
                 <td>$MARA</td>
                 <td>381,270,503</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$14.22</td>
-                <td>$5,421,666,304</td>
+                <td>$5,421,666,552</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="CLSK" data-shares="256608606" data-price="17.24" data-marketcap="4423932416">
+            <tr data-ticker="CLSK" data-shares="256608606" data-price="17.24" data-marketcap="4423932367">
                 <td>$CLSK</td>
                 <td>256,608,606</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$17.24</td>
-                <td>$4,423,932,416</td>
+                <td>$4,423,932,367</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="BTDR" data-shares="198913731" data-price="17.93" data-marketcap="4362613760">
+            <tr data-ticker="BTDR" data-shares="198913731" data-price="17.93" data-marketcap="3566523196">
                 <td>$BTDR</td>
                 <td>198,913,731</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$17.93</td>
-                <td>$4,362,613,760</td>
+                <td>$3,566,523,196</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="KEEL" data-shares="603828651" data-price="6.29" data-marketcap="3798082304">
+            <tr data-ticker="KEEL" data-shares="603828651" data-price="6.29" data-marketcap="3798082214">
                 <td>$KEEL</td>
                 <td>603,828,651</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$6.29</td>
-                <td>$3,798,082,304</td>
+                <td>$3,798,082,214</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="WYFI" data-shares="38614216" data-price="38.49" data-marketcap="1486261248">
+            <tr data-ticker="WYFI" data-shares="38614216" data-price="38.49" data-marketcap="1486261173">
                 <td>$WYFI</td>
                 <td>38,614,216</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$38.49</td>
-                <td>$1,486,261,248</td>
+                <td>$1,486,261,173</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="HIVE" data-shares="267430821" data-price="4.26" data-marketcap="1139255296">
+            <tr data-ticker="HIVE" data-shares="267430821" data-price="4.26" data-marketcap="1139255297">
                 <td>$HIVE</td>
                 <td>267,430,821</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$4.26</td>
-                <td>$1,139,255,296</td>
+                <td>$1,139,255,297</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="NUAI" data-shares="101290928" data-price="6.25" data-marketcap="633068288">
+            <tr data-ticker="NUAI" data-shares="101290928" data-price="6.25" data-marketcap="633068300">
                 <td>$NUAI</td>
                 <td>101,290,928</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$6.25</td>
-                <td>$633,068,288</td>
+                <td>$633,068,300</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="DGXX" data-shares="90420824" data-price="6.75" data-marketcap="610363072">
+            <tr data-ticker="DGXX" data-shares="90420824" data-price="6.75" data-marketcap="610340562">
                 <td>$DGXX</td>
                 <td>90,420,824</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$6.75</td>
-                <td>$610,363,072</td>
+                <td>$610,340,562</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="SLNH" data-shares="157747354" data-price="1.72" data-marketcap="271325472">
+            <tr data-ticker="SLNH" data-shares="157747354" data-price="1.72" data-marketcap="271325448">
                 <td>$SLNH</td>
                 <td>157,747,354</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$1.72</td>
-                <td>$271,325,472</td>
+                <td>$271,325,448</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="GLXY" data-shares="191491823" data-price="34.2" data-marketcap="13334583296">
+            <tr data-ticker="GLXY" data-shares="389900100" data-price="34.2" data-marketcap="13334583420">
                 <td>$GLXY</td>
-                <td>191,491,823</td>
+                <td>389,900,100</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$34.20</td>
-                <td>$13,334,583,296</td>
+                <td>$13,334,583,420</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
-            <tr data-ticker="RIOT" data-shares="378151230" data-price="28.1" data-marketcap="10626050048">
+            <tr data-ticker="RIOT" data-shares="378151230" data-price="28.1" data-marketcap="10626049563">
                 <td>$RIOT</td>
                 <td>378,151,230</td>
+                <td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(26/06/21 기점)</span></td>
                 <td class="actual-price">$28.10</td>
-                <td>$10,626,050,048</td>
+                <td>$10,626,049,563</td>
                 <td class="adjusted-price"></td>
                 <td class="percent-diff"></td>
             </tr>
@@ -211,10 +235,17 @@
     </table>
 </div>
 
+<div class="disclaimer-footer">
+    <strong>⚠️ Legal Disclaimer & Data Source Notice:</strong><br>
+    All financial metrics, equity structures, and real-time comparative models displayed on this platform are processed using an automated hybrid tracking pipeline. Real-time asset market pricing is continuously aggregated from the <strong>Yahoo Finance API</strong>, while total integrated corporate share structures and capitalization data are parsed from <strong>Toss Investment (Toss Securities Co., Ltd.)</strong> asset analytics platforms to ensure precise institutional-grade border adjustments.<br><br>
+    This tracking infrastructure utilizes <strong>June 21, 2026 as the immutable baseline date</strong> to quantify and compound downstream capital dilution vector updates. Calculated statistics are formulated strictly for computational insight, historical benchmarking, and macro-comparative review; no portion of these automated data feeds translates to formal investment advice, portfolio mandate generation, or equity underwriting valuation. Final transactional discretion belongs exclusively to the operator.<br><br>
+    <strong>📧 Contact & Feedback:</strong> For data inquiries, tracking latency issues, or technical feedback, please contact the maintainer at <a href="mailto:dgkittyg@gmail.com" style="color: #1da1f2; text-decoration: none;">dgkittyg@gmail.com</a>.
+</div>
+
 <script>
 let currentBaseShares = 38614216;
 let currentBaseTicker = "WYFI";
-let sortDirections = [false, false, false, true, false, false];
+let sortDirections = [false, false, false, false, true, false, false];
 
 const formatCurrency = (num) => "$" + num.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2});
 const formatPercent = (num) => num.toLocaleString(undefined, {minimumFractionDigits: 2, maximumFractionDigits: 2}) + "%";
@@ -259,14 +290,10 @@ function initMarketCapSort() {
     const table = document.getElementById("stockTable");
     const tbody = table.tBodies[0];
     const rows = Array.from(tbody.rows);
-    
-    table.querySelectorAll("th")[3].innerText = "Market Cap ($) ▼";
-
+    table.querySelectorAll("th")[4].innerText = "Market Cap ($) ▼";
     rows.sort((rowA, rowB) => {
-        let cellA = rowA.cells[3].innerText;
-        let cellB = rowB.cells[3].innerText;
-        let numA = parseFloat(cellA.replace(/[\$,%,]/g, ''));
-        let numB = parseFloat(cellB.replace(/[\$,%,]/g, ''));
+        let numA = parseFloat(rowA.cells[4].innerText.replace(/[\$,%,]/g, ''));
+        let numB = parseFloat(rowB.cells[4].innerText.replace(/[\$,%,]/g, ''));
         return numB - numA;
     });
     rows.forEach(row => tbody.appendChild(row));
@@ -282,21 +309,16 @@ function sortTable(columnIndex, isNumeric) {
     const headers = table.querySelectorAll("th");
     headers.forEach((th, idx) => {
         let baseText = th.innerText.replace(/[▲▼↕]/g, "").trim();
-        if (idx === columnIndex) {
-            th.innerText = baseText + (ascending ? " ▲" : " ▼");
-        } else {
-            th.innerText = baseText + " ↕";
-        }
+        if (idx === columnIndex) th.innerText = baseText + (ascending ? " ▲" : " ▼");
+        else th.innerText = baseText + " ↕";
     });
 
     rows.sort((rowA, rowB) => {
-        let cellA = rowA.cells[columnIndex].innerText;
-        let cellB = rowB.cells[columnIndex].inskyText; // Fixed typings
         let cellRawA = rowA.cells[columnIndex].innerText;
         let cellRawB = rowB.cells[columnIndex].innerText;
         if (isNumeric) {
-            let numA = parseFloat(cellRawA.replace(/[\$,%,]/g, ''));
-            let numB = parseFloat(cellRawB.replace(/[\$,%,]/g, ''));
+            let numA = parseFloat(cellRawA.replace(/[\$,%,\+🔺🔻-]/g, '')) || 0;
+            let numB = parseFloat(cellRawB.replace(/[\$,%,\+🔺🔻-]/g, '')) || 0;
             return ascending ? numA - numB : numB - numA;
         } else {
             return ascending ? cellRawA.localeCompare(cellRawB) : cellRawB.localeCompare(cellRawA);
@@ -305,16 +327,11 @@ function sortTable(columnIndex, isNumeric) {
     rows.forEach(row => tbody.appendChild(row));
 }
 
-// WYFI 자동 탐색 후 초기화 로직 (없을 시 첫번째 데이터 주식수 백업용)
 let defaultShares = 38614216;
 let defaultTicker = "WYFI";
-const rows = document.querySelectorAll("#stockTable tbody tr");
-rows.forEach(row => {
-    if(row.getAttribute("data-ticker") === "WYFI") {
-        defaultShares = parseFloat(row.getAttribute("data-shares"));
-    }
+document.querySelectorAll("#stockTable tbody tr").forEach(row => {
+    if(row.getAttribute("data-ticker") === "WYFI") defaultShares = parseFloat(row.getAttribute("data-shares"));
 });
-
 updateCalculations(defaultShares, defaultTicker);
 </script>
 </body>
