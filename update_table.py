@@ -52,16 +52,21 @@ def fetch_shares_from_toss_web(ticker_symbol):
         print(f"   ⚠️ 토스 웹 피드 파싱 지연 ({ticker_symbol}): {e}")
     return 0
 
-# 3. 히스토리 로드 및 갱신 (경로를 현재 스크립트 실행 위치로 절대화)
+# 3. 히스토리 로드 및 갱신 (비어있는 0바이트 파일 에러 완벽 방어)
 current_dir = os.path.dirname(os.path.abspath(__file__))
 history_file = os.path.join(current_dir, "history.json")
 
+history_data = {}
 if os.path.exists(history_file):
-    with open(history_file, "r", encoding="utf-8") as f:
-        history_data = json.load(f)
-else:
-    # 💡 깃허브 서버에 파일이 없으면 강제로 빈 껍데기 틀을 만들어 뇌정지를 막습니다.
-    history_data = {}
+    try:
+        with open(history_file, "r", encoding="utf-8") as f:
+            # 파일이 존재하고 내용이 있을 때만 로드
+            content = f.read().strip()
+            if content:
+                history_data = json.loads(content)
+    except Exception as e:
+        print(f"⚠️ 기존 history.json 읽기 실패 (초기화 진행): {e}")
+        history_data = {}
 
 stock_data = []
 all_base_dates = []
