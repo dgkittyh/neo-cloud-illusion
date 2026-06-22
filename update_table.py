@@ -143,11 +143,11 @@ for s in stock_data:
         display_base_date = datetime.now().strftime("%y/%m/%d")
 
     if s['dilution'] > 0:
-        dilution_html = f'<td style="color: #ff6781; font-weight: bold;">+{s["dilution"]:.2f}% 🔺 <span style="font-size: 11px; color: #8899a6; font-weight: normal;">({display_base_date} 기점)</span></td>'
+        dilution_html = f'<td style="color: #ff6781; font-weight: bold;">+{s["dilution"]:.2f}% 🔺 <span style="font-size: 11px; color: #8899a6; font-weight: normal;">(Based on {display_base_date})</span></td>'
     elif s['dilution'] < 0:
-        dilution_html = f'<td style="color: #00ba7c; font-weight: bold;">{s["dilution"]:.2f}% 🔻 <span style="font-size: 11px; color: #8899a6; font-weight: normal;">({display_base_date} 기점)</span></td>'
+        dilution_html = f'<td style="color: #00ba7c; font-weight: bold;">{s["dilution"]:.2f}% 🔻 <span style="font-size: 11px; color: #8899a6; font-weight: normal;">(Based on {display_base_date})</span></td>'
     else:
-        dilution_html = f'<td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">({display_base_date} 기점)</span></td>'
+        dilution_html = f'<td style="color: #8899a6; font-size: 13px;">0.00% <span style="font-size: 11px; color: #536471;">(Based on {display_base_date})</span></td>'
 
     table_rows += f"""            <tr data-ticker="{s['ticker']}" data-shares="{s['shares']}" data-price="{s['price']}" data-marketcap="{s['marketcap']}">
                 <td>${s['ticker']}</td>
