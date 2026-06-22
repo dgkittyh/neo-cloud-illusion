@@ -3,6 +3,7 @@ import json
 import requests
 from bs4 import BeautifulSoup
 import yfinance as yf
+import datetime  # 💡 [여기가 누락되어 에러가 났었습니다! 추가 완료]
 
 # ==========================================
 # 1. 역사 기록(history.json) 분석 및 최초 기록일 파싱
