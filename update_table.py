@@ -194,10 +194,16 @@ html_template = """<!DOCTYPE html>
 <body>
 
 <div class="card">
-    <h2>Neo-Cloud & Infra: The Share Count Illusion</h2>
+    <h2>The Share Count Illusion: Liquidity & Price Momentum</h2>
+    
     <p class="subtitle">
-        Isolating the impact of dilution. What if every company had exactly the same number of shares as <span id="baseTickerName" class="highlight-text">$WYFI (38.61M)</span>?<br>
-        <span class="date-badge">* Data as of market close on __MARKET_CLOSE_DATE__ (Click Ticker to change Base / Click Header to sort)</span>
+        Why do some stocks surge effortlessly while others stay stagnant despite massive capital inflows? 
+        The answer lies in the sheer volume of outstanding shares. Excessive share supply creates an immense structural ceiling that stifles upward price momentum.<br><br>
+        
+        <strong>"What if these heavily diluted tickers had the ultra-lightweight share structure of our baseline?"</strong><br>
+        By normalizing all asset float structures against <span id="baseTickerName" class="highlight-text">$WYFI (38.61M)</span>, we instantly unmask the hidden 'Adjusted Price' — the explosive price target these stocks could easily achieve under a scarce supply model.<br>
+        
+        <span class="date-badge">* Data synthesized as of market close on __MARKET_CLOSE_DATE__ • Click Ticker to shift the Weight Baseline • Click Headers to sort</span>
     </p>
     
     <table id="stockTable">
