@@ -194,16 +194,16 @@ html_template = """<!DOCTYPE html>
 <body>
 
 <div class="card">
-    <h2>The Share Count Illusion: Liquidity & Price Momentum</h2>
+    <h2>Neo-Cloud Share Count: Revenue Growth vs. Price Responsiveness</h2>
     
     <p class="subtitle">
-        Why do some stocks surge effortlessly while others stay stagnant despite massive capital inflows? 
-        The answer lies in the sheer volume of outstanding shares. Excessive share supply creates an immense structural ceiling that stifles upward price momentum.<br><br>
+        While a company’s robust revenue expansion serves as a fundamental catalyst, the efficiency with which this growth translates into share price appreciation is strictly dictated by its <strong>outstanding share structure</strong>. 
+        An overdiluted share supply acts as a structural drag, severely dampening how dynamically the stock responds to massive top-line growth. This platform quantifies that exact sensitivity, analyzing the physical constraints of float scale on price momentum.<br><br>
         
-        <strong>"What if these heavily diluted tickers had the ultra-lightweight share structure of our baseline?"</strong><br>
-        By normalizing all asset float structures against <span id="baseTickerName" class="highlight-text">$WYFI (38.61M)</span>, we instantly unmask the hidden 'Adjusted Price' — the explosive price target these stocks could easily achieve under a scarce supply model.<br>
+        <strong>"How would the stock price respond to the same revenue growth under a highly optimized, scarce supply model?"</strong><br>
+        By normalizing the float structure of all peer assets against <span id="baseTickerName" class="highlight-text">$WYFI (38.61M)</span>, we remove the weight of excessive share supply. This instantly unmasks the <strong>'Adjusted Price'</strong> — revealing the explosive valuation these companies would naturally achieve under a lean equity landscape.<br>
         
-        <span class="date-badge">* Data synthesized as of market close on __MARKET_CLOSE_DATE__ • Click Ticker to shift the Weight Baseline • Click Headers to sort</span>
+        <span class="date-badge">* Data synthesized as of market close on __MARKET_CLOSE_DATE__ • Click any Ticker to shift the Weight Baseline • Click Headers to sort</span>
     </p>
     
     <table id="stockTable">
